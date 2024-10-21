@@ -11,11 +11,9 @@ private:
 	ListCont<Employee> empContainer;
 
 public:
-	void inputEmployee(); //when input employee from keyboard, store the input data in the container for later use;
-							//Task 1: please implement this!
+	void inputEmployee(); 
 
-	void findBestPaid(); //go through the container to find the best paid employee
-							//Task 2: please implement this!
+	void findBestPaid(); 
 
 	void printBestPaid() const;
 }; 
