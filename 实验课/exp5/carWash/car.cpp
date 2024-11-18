@@ -34,8 +34,8 @@ int Car::getWaitingTime()
 
 void Car::setDepartAndWaitTime(int startServiceTime)
 {
-	departureTime = startServiceTime + SERVICE_T;
-	waitingTime = startServiceTime - arrivalTime;
+    departureTime = startServiceTime + SERVICE_T;
+    waitingTime = startServiceTime - arrivalTime;
 }
 
 void Car::printCarDeparture()

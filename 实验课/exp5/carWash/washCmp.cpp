@@ -78,38 +78,17 @@ int WashCmp::getNextArrival(int currentTime)
 
 void WashCmp::processArrivalEmptyQ(int arrivalTime)
 {
-    static std::default_random_engine generator;
-    std::exponential_distribution<double> serviceDistribution(serviceRate);
-
-    double serviceTime = serviceDistribution(generator);
-    int departureTime = arrivalTime + static_cast<int>(serviceTime);
-
     Car arrivedCar = Car(arrivalTime);
     arrivedCar.setDepartAndWaitTime(arrivalTime); // set the departure and waiting time of the arrived car
     arrivedCar.printCarArrival(); // print the arrival information of the arrived car
     carQueue.push(arrivedCar); // set the arrival time of the arrived car
-
-    std::cout << "Service time: " << serviceTime << ", Departure time: " << departureTime << std::endl;
 }
 
 void WashCmp::processArrivalNonEmptyQ(int arrivalTime)
 {
-    static std::default_random_engine generator;
-    std::exponential_distribution<double> serviceDistribution(serviceRate);
-
-    double serviceTime = serviceDistribution(generator);
-    int departureTime = arrivalTime + static_cast<int>(serviceTime);
-
-    if (numServedCars < FINISHAMOUNT) // add the arrived car to the waiting queue
-    {
-        Car arrivedCar = Car(arrivalTime);
-        arrivedCar.printCarArrival(); // print the arrival information of the arrived car
-        carQueue.push(arrivedCar); // set the arrival time of the arrived car
-
-        std::cout << "Service time: " << serviceTime << ", Departure time: " << departureTime << std::endl;
-    }
-    else // the arrived car leaves
-        std::cout << "OVERFLOW!!!\n";
+    Car arrivedCar = Car(arrivalTime);
+    arrivedCar.printCarArrival(); // print the arrival information of the arrived car
+    carQueue.push(arrivedCar); // set the arrival time of the arrived car
 }
 
 void WashCmp::processDeparture()
