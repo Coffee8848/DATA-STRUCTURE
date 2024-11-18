@@ -6,34 +6,33 @@
 class Application
 {
 public:
-	void initialize(); //intialization 
+    void initialize(); // 初始化
 
-	Position getStartPosition(); //get the start position
+    Position getStartPosition(); // 获取起始位置  position是返回类型 返回的是position
 
-	bool isValid(const Position& p); //check whether the position p is valid
+    bool isValid(const Position& p); // 检查位置 p 是否有效
 
-	void progress(const Position& p); //extend by including position p
+    void progress(const Position& p); // 通过包含位置 p 来扩展
 
-	bool success(const Position& p); //check whether a successful solution is obtained at p
+    bool success(const Position& p); // 检查在位置 p 是否获得成功的解决方案
 
-	void goBack(const Position& p); //go back one step from p
+    void goBack(const Position& p); // 从位置 p 回退一步
 
-	void print(); //print the configuration of the application
+    void print(); // 打印应用程序的配置
 
-	class Iterator //inner class
-	{
-	public:
-		Iterator(); //default constructor
-		Iterator(const Position& currP); //constructor with an input position
-		~Iterator();
+    class Iterator // 内部类
+    {
+    public:
+        Iterator(); // 默认构造函数
+        Iterator(const Position& currP); // 带输入位置的构造函数
+        ~Iterator();
 
-		Position getNextPosition(); //get next possible posible position
-		bool noNextPosition(); //check whether all the possible next are tried
+        Position getNextPosition(); // 获取下一个可能的位置
+        bool noNextPosition(); // 检查是否所有可能的位置都已尝试
 
-	private:
-		void *currItrPosPtr; //additional information to find next
-	};
+    private:
+        void *currItrPosPtr; // 查找下一个位置的附加信息
+    };
 };
-
 
 #endif
