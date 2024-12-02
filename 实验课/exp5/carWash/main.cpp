@@ -8,9 +8,14 @@ using namespace std;
 
 int main()
 {
-	WashCmp cmp;
-	cmp.simulation();
-	cmp.printStatistic();
+	srand((unsigned int)time(0)); // 设置随机数种子
+    double lambda;
+    cout << "Please input the arrival rate (lambda): ";
+    cin >> lambda;
+
+    WashCmp cmp(lambda);
+    cmp.simulation();
+    cmp.printStatistic();
 
 	/*
 	srand((unsigned int)time(0));
