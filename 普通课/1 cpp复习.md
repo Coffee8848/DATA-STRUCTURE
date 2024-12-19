@@ -510,6 +510,13 @@ int main() {
 
 返回类型- 类名`<T>` :: 函数名() {}
 
+```cpp
+template <typename T>
+返回类型 类名<T>::函数名(参数列表) {
+    // 函数体
+}
+```
+
 ---
 
 ### 5. **STL（Standard Template Library）**
