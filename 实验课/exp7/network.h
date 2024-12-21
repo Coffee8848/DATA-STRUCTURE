@@ -4,6 +4,7 @@
 #include <map>
 #include <list>
 #include <queue>
+#include <limits>
 
 using namespace std;
 
@@ -117,12 +118,65 @@ class network
 		//				  returns the list of vertices on the shortest path
 		//				  and the total weight of the shortest path;
 		//				  otherwise, returns an empty list and the value -1.0
+       
         pair<list<vertex>, double> get_shortest_path (const vertex& v1, const vertex& v2)
         {
-			//please implement this
+            // 如果顶点不存在，直接返回
+            if (ver_adj.find(v1) == ver_adj.end() || ver_adj.find(v2) == ver_adj.end())
+                return make_pair(list<vertex>(), -1.0);
 
-        } // method get_shortest_path
+            // 距离与前驱记录
+            map<vertex, double> dist;
+            map<vertex, vertex> prev;
+            const double INF = std::numeric_limits<double>::infinity();
 
+            // 初始化
+            for (auto &m : ver_adj)
+            {
+                dist[m.first] = INF;
+            }
+            dist[v1] = 0.0;
+
+            // 优先队列（最小堆）
+            auto cmp = [&](const vertex &a, const vertex &b){
+                return dist[a] > dist[b];
+            };
+            priority_queue<vertex, vector<vertex>, decltype(cmp)> pq(cmp);
+            pq.push(v1);
+
+            // Dijkstra
+            while (!pq.empty())
+            {
+                vertex u = pq.top();
+                pq.pop();
+
+                if (u == v2) break; // 找到目标
+
+                // 遍历邻居
+                for (auto &edge : ver_adj[u])
+                {
+                    vertex w = edge.to;
+                    double cost = edge.weight;
+                    if (dist[u] + cost < dist[w])
+                    {
+                        dist[w] = dist[u] + cost;
+                        prev[w] = u;
+                        pq.push(w);
+                    }
+                }
+            }
+
+            // 构建路径
+            if (dist[v2] == INF)
+                return make_pair(list<vertex>(), -1.0);
+
+            list<vertex> path;
+            for (vertex at = v2; at != v1; at = prev[at])
+                path.push_front(at);
+            path.push_front(v1);
+
+            return make_pair(path, dist[v2]);
+        }
 }; // class network
 
 #endif
