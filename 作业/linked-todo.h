@@ -43,10 +43,10 @@ class Linked {
                 // Postcondition: true has been returned if the
                 //                iterator is equal to itr; otherwise,
                 //                false has been returned.
-                bool operator== (const Iterator& itr) const
+                bool nst
                 {
                     return nodePtr == itr.nodePtr;
-                } // overloading ==
+                } // overloading ==operator== (const Iterator& itr) co
 
 
                 // Postcondition: true has been returned if the

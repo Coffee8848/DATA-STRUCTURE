@@ -17,13 +17,11 @@
   3. **数据的*操作***：
      * 操作目的是实现算法（算法是数据操作的具体实现）。
 
-
 ## 面向对象原则
 
 #### Open-Closed Principle
 
 对扩展开放 对修改关闭
-
 
 #### **Subclass Substitution Rule (子类替换原则)**
 
@@ -252,7 +250,7 @@ class Derived : public Base1, public Base2 {
 
 ### 虚函数和多态
 
-#### 虚函数
+#### 虚函数 非虚函数不能重写
 
 虚函数是基类中声明为 `virtual` 的成员函数，允许在派生类中重写。虚函数实现了运行时多态。
 
